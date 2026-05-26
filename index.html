@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Монтаж и установка принудительной вентиляции | Миторра. Строительство</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['IBM Plex Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        slate: {
+                            850: '#1e293b',
+                            950: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --grid-unit: 8px;
+            --section-gap: 120px;
+            --container-max: 1280px;
+        }
+
+        * { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafafa;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        /* Modular Grid Overlay (dev mode hint) */
+        .modular-grid {
+            background-image: 
+                linear-gradient(to right, rgba(249,115,22,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(249,115,22,0.03) 1px, transparent 1px);
+            background-size: calc(var(--grid-unit) * 12) calc(var(--grid-unit) * 12);
+        }
+
+        /* Hero Video */
+        .hero-video-container {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+        }
+
+        .hero-video-container video,
+        .hero-video-container .hero-fallback {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15,23,42,0.7) 0%, rgba(15,23,42,0.4) 50%, rgba(15,23,42,0.8) 100%);
+        }
+
+        /* Typography Scale */
+        .h-display {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+        }
+
+        .h-section {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            font-weight: 700;
+        }
+
+        .h-subsection {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        /* Components */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: #f97316;
+            color: white;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .btn-primary:hover::before { transform: translateX(100%); }
+        .btn-primary:hover { background: #ea580c; transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(249,115,22,0.4); }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: transparent;
+            color: white;
+            font-weight: 600;
+            border: 1.5px solid rgba(255,255,255,0.4);
+            border-radius: 4px;
+            transition: all 0.3s;
+            backdrop-filter: blur(8px);
+        }
+
+        .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+        /* Cards */
+        .card-module {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-module:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.08);
+            border-color: #fdba74;
+        }
+
+        /* Step Cards */
+        .step-card {
+            position: relative;
+            padding: 32px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .step-card::before {
+            content: attr(data-step);
+            position: absolute;
+            top: -16px;
+            left: 32px;
+            width: 48px;
+            height: 48px;
+            background: #f97316;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 500;
+            font-size: 14px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(249,115,22,0.3);
+        }
+
+        .step-card:hover {
+            border-color: #fdba74;
+            box-shadow: 0 16px 32px -8px rgba(0,0,0,0.06);
+        }
+
+        /* Project Card */
+        .project-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+            border: 1px solid #e2e8f0;
+        }
+
+        .project-card img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card:hover img { transform: scale(1.05); }
+
+        .project-card .project-meta {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 24px;
+            background: linear-gradient(to top, rgba(15,23,42,0.9), transparent);
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s;
+        }
+
+        .project-card:hover .project-meta {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Infographic Bars */
+        .info-bar {
+            height: 8px;
+            background: #f1f5f9;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .info-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fb923c, #f97316);
+            border-radius: 4px;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Header */
+        .header-glass {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 50;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226,232,240,0.6);
+            transition: all 0.3s;
+        }
+
+        .header-glass.scrolled {
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+
+        /* Tag */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 14px;
+            background: #fff7ed;
+            color: #c2410c;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 4px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* Form */
+        .input-field {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249,115,22,0.1);
+        }
+
+        /* Scroll indicator */
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, white, transparent);
+            animation: scrollPulse 2s infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-menu.open { transform: translateX(0); }
+
+        /* Connection line for steps */
+        .steps-connector {
+            position: absolute;
+            top: 0;
+            left: 56px;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #fed7aa, #f97316, #fed7aa);
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .steps-connector { display: none; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="header-glass" id="header">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="/" class="flex items-center gap-3 group">
+                    <svg width="160" height="28" viewBox="0 0 342 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_header)">
+                        <path d="M49.7079 8.95523C44.0428 8.95523 39.4513 13.665 39.4513 19.4776C39.4513 25.2902 44.0428 30 49.7079 30C53.3685 30 56.5813 28.0293 58.3958 25.0673H53.0396C52.5444 25.8874 51.3362 26.4249 49.7515 26.4249C46.2455 26.4249 44.0428 23.8649 43.5674 21.1099H59.8418C59.8418 21.1099 59.8418 21.1099 59.8418 21.1059C59.8418 12.8528 54.7392 8.95523 49.7079 8.95523ZM43.6189 17.5706C44.4152 14.9271 46.7209 12.8728 49.6089 12.8728C52.4969 12.8728 54.8026 14.9231 55.5989 17.5706H43.6189Z" fill="#1e293b"/>
+                        <path d="M73.2013 8.95523C67.5362 8.95523 62.9447 13.665 62.9447 19.4776C62.9447 25.2902 67.5362 30 73.2013 30C76.8618 30 80.0747 28.0293 81.8891 25.0673H76.533C76.0378 25.8874 74.8295 26.4249 73.2449 26.4249C69.7389 26.4249 67.5362 23.8649 67.0608 21.1099H83.3351C83.3351 21.1099 83.3351 21.1099 83.3351 21.1059C83.3351 12.8528 78.2286 8.95523 73.2013 8.95523ZM67.1123 17.5706C67.9086 14.9271 70.2142 12.8728 73.1023 12.8728C75.9903 12.8728 78.296 14.9231 79.0922 17.5706H67.1123Z" fill="#1e293b"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M123.673 8.95523H127.194V12.8612C127.999 10.9136 131.521 8.78528 133.868 8.96599V12.7206C128.939 13.0579 127.333 17.4029 127.305 19.1055V30H123.677V8.95523H123.673Z" fill="#1e293b"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M136.528 8.95523H140.049V12.8612C140.854 10.9136 144.375 8.78528 146.723 8.96599V12.7206C141.794 13.0579 140.188 17.4029 140.16 19.1055V30H136.532V8.95523H136.528Z" fill="#1e293b"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M163.969 8.9632L163.965 11.0083C160.787 8.47171 155.554 8.27628 152.24 10.4739C140.311 18.3749 151.551 36.3865 163.973 27.6758C163.981 28.4775 163.993 29.1983 164.001 30H168V8.95523L163.969 8.9632ZM157.385 26.1283C153.719 26.1283 150.746 23.1171 150.746 19.4039C150.746 15.6907 153.719 12.6795 157.385 12.6795C161.052 12.6795 164.025 15.6907 164.025 19.4039C164.025 23.1171 161.052 26.1283 157.385 26.1283Z" fill="#1e293b"/>
+                        <path d="M110.375 8.95523C104.745 8.95523 100.179 13.6633 100.179 19.4756C100.179 25.2879 104.745 30 110.375 30C116.005 30 120.57 25.2879 120.57 19.4756C120.566 13.6673 116.005 8.95523 110.375 8.95523ZM110.418 25.87C106.909 25.87 104.051 22.9837 104.051 19.4318C104.051 15.8838 106.905 12.9936 110.418 12.9936C113.927 12.9936 116.785 15.8798 116.785 19.4318C116.785 22.9837 113.927 25.87 110.418 25.87Z" fill="#1e293b"/>
+                        <path d="M90.8302 21.2188V12.5373H97.6334V9.04412H90.8302V0H86.8813V21.3469C86.8813 26.7156 90.2099 30 95.5981 30H98.8496C98.8496 30 98.8496 27.2356 98.8496 26.3955C95.2656 26.3955 90.8302 26.9596 90.8302 21.2188Z" fill="#1e293b"/>
+                        <path d="M25.5119 9.00792C22.5273 9.21471 19.6283 10.6258 17.9525 13.3628C17.7038 12.9817 17.4469 12.6289 17.186 12.3045C14.9679 9.56749 12.2075 8.76867 9.76929 8.99169C6.87438 9.25526 4.4239 10.9543 3.84085 12.5559L3.83269 8.9552H0V30H3.83269L3.83677 18.399C3.83677 17.584 4.4606 13.3101 9.16584 12.8722C9.42271 12.8479 9.68774 12.8317 9.96908 12.8317C12.8232 12.8317 14.3563 14.3685 15.1636 15.8242C15.7548 16.8906 16.0361 18.0989 16.0361 19.3154V30H19.8688V18.0706C19.877 16.9676 20.297 15.889 21.035 15.0618C22.0584 13.9103 23.5955 13.0831 25.2264 12.8722C25.361 12.856 25.4956 12.8398 25.6301 12.8317C28.0439 12.6695 30.8491 14.1698 31.795 16.9028C31.9622 17.3853 32.0601 17.8921 32.0682 18.399V30H35.905V17.8921C35.9091 11.8017 30.5841 8.6592 25.5119 9.00792Z" fill="#1e293b"/>
+                        <path d="M9.06543 12.8823C11.3691 13.1588 12.6694 14.5239 13.3906 15.8242C13.9818 16.8907 14.2631 18.099 14.2631 19.3155V30.0001H16.0361V19.3155C16.0361 18.099 15.7548 16.8907 15.1636 15.8242C14.3563 14.3685 12.8232 12.8317 9.96905 12.8317C9.68772 12.8317 9.42269 12.848 9.16582 12.8723C9.13215 12.8754 9.09868 12.8788 9.06543 12.8823Z" fill="#94a3b8"/>
+                        <path d="M25.1019 12.8896C25.1433 12.8834 25.1849 12.8777 25.2264 12.8723C25.361 12.8561 25.4956 12.8399 25.6301 12.8317C28.0439 12.6695 30.8491 14.1699 31.795 16.9028C31.9622 17.3854 32.06 17.8922 32.0682 18.3991V30.0001L30.2951 30V18.3991C30.2869 17.8922 30.1891 17.3853 30.0219 16.9028C29.2356 14.6311 27.1648 13.2111 25.1019 12.8896Z" fill="#94a3b8"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_header">
+                        <rect width="342" height="30" fill="white"/>
+                        </clipPath>
+                        </defs>
+                    </svg>
+                    <span class="hidden sm:inline-block px-2 py-1 bg-brand-50 text-brand-700 text-xs font-mono font-medium rounded ml-2">САМАРА</span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex items-center gap-1">
+                    <a href="#about" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors rounded-md hover:bg-slate-50">О вентиляции</a>
+                    <a href="#process" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors rounded-md hover:bg-slate-50">Как работаем</a>
+                    <a href="#projects" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors rounded-md hover:bg-slate-50">Проекты</a>
+                    <a href="#contact" class="ml-4 btn-primary text-sm">Оставить заявку</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <button class="lg:hidden p-2 text-slate-700" id="menuBtn" aria-label="Menu">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed inset-0 z-40 bg-white" id="mobileMenu">
+        <div class="p-6 pt-24 flex flex-col gap-4">
+            <a href="#about" class="text-xl font-medium text-slate-800 py-3 border-b border-slate-100 mobile-link">О вентиляции</a>
+            <a href="#process" class="text-xl font-medium text-slate-800 py-3 border-b border-slate-100 mobile-link">Как работаем</a>
+            <a href="#projects" class="text-xl font-medium text-slate-800 py-3 border-b border-slate-100 mobile-link">Проекты</a>
+            <a href="#contact" class="mt-4 btn-primary justify-center mobile-link">Оставить заявку</a>
+        </div>
+        <button class="absolute top-6 right-6 p-2 text-slate-700" id="closeMenu">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-video-container" id="hero">
+        <!-- Video Background -->
+        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070&auto=format&fit=crop">
+            <source src="https://videos.pexels.com/video-files/853189/853189-hd_1920_1080_25fps.mp4" type="video/mp4">
+            <!-- Fallback image handled by poster -->
+        </video>
+        <div class="hero-fallback hidden" style="background: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;"></div>
+
+        <div class="hero-overlay"></div>
+
+        <div class="relative z-10 h-full flex flex-col justify-center max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <div class="tag mb-6 reveal" id="heroTag">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Монтаж и обслуживание
+                </div>
+
+                <h1 class="h-display text-white mb-6 reveal" id="heroTitle">
+                    Монтаж и установка<br>
+                    <span class="text-brand-400">принудительной вентиляции</span>
+                </h1>
+
+                <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl leading-relaxed reveal" id="heroText">
+                    Наша команда профессионалов гарантирует качественное выполнение работ, начиная с проектирования системы и заканчивая её запуском. Оставьте заявку на бесплатную консультацию, и мы свяжемся с вами!
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 reveal" id="heroCta">
+                    <a href="#contact" class="btn-primary text-base">
+                        Бесплатная консультация
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#about" class="btn-secondary text-base">
+                        Узнать больше
+                    </a>
+                </div>
+            </div>
+
+            <div class="absolute bottom-8 left-6 lg:left-8 flex flex-col items-center gap-2 reveal" id="heroScroll">
+                <span class="text-xs text-slate-400 font-mono uppercase tracking-widest rotate-0 md:-rotate-90 md:origin-center md:translate-y-8">Scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="absolute bottom-8 right-6 lg:right-8 hidden md:flex gap-8 reveal" id="heroStats">
+                <div class="text-right">
+                    <div class="text-2xl font-bold text-white font-mono">150+</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider">Объектов</div>
+                </div>
+                <div class="w-px bg-slate-700"></div>
+                <div class="text-right">
+                    <div class="text-2xl font-bold text-white font-mono">12</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider">Лет опыта</div>
+                </div>
+                <div class="w-px bg-slate-700"></div>
+                <div class="text-right">
+                    <div class="text-2xl font-bold text-white font-mono">5</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider">Направлений</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About / Info Section -->
+    <section class="py-24 md:py-32 bg-white" id="about">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                <!-- Left: Sticky Title -->
+                <div class="lg:col-span-4 lg:sticky lg:top-28">
+                    <span class="tag mb-4 reveal">Почему мы</span>
+                    <h2 class="h-section text-slate-900 mb-6 reveal">
+                        Хорошая вентиляция — залог здорового микроклимата в вашем доме
+                    </h2>
+                    <p class="text-slate-500 leading-relaxed reveal">
+                        Комплексный подход: от проекта до запуска. Мы предлагаем полный цикл работ с учётом характеристик объекта.
+                    </p>
+                </div>
+
+                <!-- Right: Info Cards -->
+                <div class="lg:col-span-8 grid md:grid-cols-2 gap-6">
+                    <div class="card-module reveal">
+                        <div class="w-12 h-12 bg-brand-50 rounded-lg flex items-center justify-center mb-4">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3v18M3 12h18M7.5 7.5l9 9M16.5 7.5l-9 9"/>
+                            </svg>
+                        </div>
+                        <h3 class="h-subsection text-slate-900 mb-3">Назначение принудительной вентиляции</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Принудительная вентиляция — это эффективное решение для обеспечения комфортного микроклимата в доме. Она обеспечивает постоянный приток свежего воздуха, предотвращает образование плесени, снижает уровень влажности и соответствует санитарным нормам воздухообмена.
+                        </p>
+                    </div>
+
+                    <div class="card-module reveal">
+                        <div class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center mb-4">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="12"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16"/>
+                            </svg>
+                        </div>
+                        <h3 class="h-subsection text-slate-900 mb-3">Почему естественной вентиляции недостаточно?</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Естественная вентиляция не обеспечивает стабильного воздухообмена. Она может вызывать значительные теплопотери, не справляется с загрязнённым воздухом и не регулирует уровень углекислого газа и влажности.
+                        </p>
+                    </div>
+
+                    <div class="card-module reveal">
+                        <div class="w-12 h-12 bg-emerald-50 rounded-lg flex items-center justify-center mb-4">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                        </div>
+                        <h3 class="h-subsection text-slate-900 mb-3">Преимущества принудительной системы</h3>
+                        <ul class="space-y-2 text-sm text-slate-600">
+                            <li class="flex items-start gap-2">
+                                <span class="w-1.5 h-1.5 bg-brand-400 rounded-full mt-2 shrink-0"></span>
+                                Фильтрация воздуха от пыли и вредных примесей
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-1.5 h-1.5 bg-brand-400 rounded-full mt-2 shrink-0"></span>
+                                Контроль температуры и влажности
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-1.5 h-1.5 bg-brand-400 rounded-full mt-2 shrink-0"></span>
+                                Снижение теплопотерь
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card-module reveal">
+                        <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="h-subsection text-slate-900 mb-3">Что даёт качественная вентиляция?</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Система вентиляции предотвращает застой воздуха, поддерживает оптимальный микроклимат, регулирует уровень влажности и CO₂, способствуя улучшению самочувствия и общего качества жизни.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infographic / Metrics Section -->
+    <section class="py-20 bg-slate-950 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="tag mb-4 inline-block bg-brand-900/50 text-brand-300 border border-brand-800">Эффективность</span>
+                <h2 class="h-section text-white mb-4 reveal">Комплексный подход: от проекта до запуска</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto reveal">
+                    Мы предлагаем полный цикл работ: от профессионального проектирования с учётом характеристик объекта до подбора оборудования, установки, запуска системы и её последующего обслуживания.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-900/50 border border-slate-800 rounded-lg p-8 reveal">
+                    <div class="text-5xl font-bold text-brand-400 font-mono mb-2" data-count="99">0</div>
+                    <div class="text-sm text-slate-400 uppercase tracking-wider mb-4">% соответствия нормам</div>
+                    <div class="info-bar mb-4">
+                        <div class="info-bar-fill" data-width="99%"></div>
+                    </div>
+                    <p class="text-sm text-slate-500">Все системы проходят проверку на соответствие СНиП и санитарным нормам воздухообмена</p>
+                </div>
+
+                <div class="bg-slate-900/50 border border-slate-800 rounded-lg p-8 reveal">
+                    <div class="text-5xl font-bold text-brand-400 font-mono mb-2" data-count="40">0</div>
+                    <div class="text-sm text-slate-400 uppercase tracking-wider mb-4">% экономии энергии</div>
+                    <div class="info-bar mb-4">
+                        <div class="info-bar-fill" data-width="40%"></div>
+                    </div>
+                    <p class="text-sm text-slate-500">Современные системы рекуперации воздуха снижают теплопотери до 40%</p>
+                </div>
+
+                <div class="bg-slate-900/50 border border-slate-800 rounded-lg p-8 reveal">
+                    <div class="text-5xl font-bold text-brand-400 font-mono mb-2" data-count="24">0</div>
+                    <div class="text-sm text-slate-400 uppercase tracking-wider mb-4">/7 поддержка</div>
+                    <div class="info-bar mb-4">
+                        <div class="info-bar-fill" data-width="100%"></div>
+                    </div>
+                    <p class="text-sm text-slate-500">Сервисное обслуживание и экстренный выезд инженера в любое время</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-24 md:py-32 bg-slate-50" id="process">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <span class="tag mb-4 inline-block">Процесс</span>
+                <h2 class="h-section text-slate-900 mb-4 reveal">Как работает наша компания</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto reveal">
+                    Наша компания предлагает полный цикл услуг по установке и обслуживанию вентиляционных систем. Мы начинаем с бесплатной консультации, чтобы понять ваши потребности и требования
+                </p>
+            </div>
+
+            <div class="relative grid md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-16">
+                <div class="steps-connector hidden lg:block"></div>
+
+                <div class="step-card reveal" data-step="01">
+                    <h3 class="h-subsection text-slate-900 mb-3 mt-4">Звонок или заявка</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Оставьте заявку по номеру <a href="tel:+78007755695" class="text-brand-600 font-medium hover:underline">+7 800 775 56 95</a> или оформите заявку на сайте
+                    </p>
+                    <div class="flex items-center gap-2 text-xs text-slate-400 font-mono">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                        </svg>
+                        5 минут
+                    </div>
+                </div>
+
+                <div class="step-card reveal" data-step="02">
+                    <h3 class="h-subsection text-slate-900 mb-3 mt-4">Выезд инженера бесплатно</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Выезд инженера на объект, аудит помещения и системы: условия доступа, объём и состав услуги, виды и степень загрязнения
+                    </p>
+                    <div class="flex items-center gap-2 text-xs text-slate-400 font-mono">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        1–2 дня
+                    </div>
+                </div>
+
+                <div class="step-card reveal" data-step="03">
+                    <h3 class="h-subsection text-slate-900 mb-3 mt-4">Составление сметы</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Составление сметы и отправка её на Вашу почту
+                    </p>
+                    <div class="flex items-center gap-2 text-xs text-slate-400 font-mono">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                        1–3 дня
+                    </div>
+                </div>
+
+                <div class="step-card reveal" data-step="04">
+                    <h3 class="h-subsection text-slate-900 mb-3 mt-4">Заключение договора</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Заключаем договор, в котором фиксируем стоимость и сроки работ
+                    </p>
+                    <div class="flex items-center gap-2 text-xs text-slate-400 font-mono">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                        1 день
+                    </div>
+                </div>
+
+                <div class="step-card reveal" data-step="05">
+                    <h3 class="h-subsection text-slate-900 mb-3 mt-4">Поставка и монтаж оборудования</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Комплектуем и доставляем оборудование на объект. Производим монтаж и проверяем работоспособность системы
+                    </p>
+                    <div class="flex items-center gap-2 text-xs text-slate-400 font-mono">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                        От 3 дней
+                    </div>
+                </div>
+
+                <div class="step-card reveal" data-step="06">
+                    <h3 class="h-subsection text-slate-900 mb-3 mt-4">Приём работы</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Сдаём Вам работу в срок или раньше и предоставляем гарантию на выполненные нами работы
+                    </p>
+                    <div class="flex items-center gap-2 text-xs text-slate-400 font-mono">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3zM7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/>
+                        </svg>
+                        Гарантия 2 года
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-24 md:py-32 bg-white" id="projects">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
+                <div>
+                    <span class="tag mb-4 inline-block">Портфолио</span>
+                    <h2 class="h-section text-slate-900 mb-4 reveal">Наши работы</h2>
+                    <p class="text-slate-500 max-w-xl reveal">
+                        Реализованные проекты по монтажу и обслуживанию инженерных систем: от проектирования и поставки оборудования до пусконаладки.
+                    </p>
+                </div>
+                <a href="#" class="hidden md:inline-flex items-center gap-2 text-brand-600 font-medium hover:text-brand-700 transition-colors mt-4 md:mt-0 reveal">
+                    Все проекты
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card reveal">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070&auto=format&fit=crop" alt="Система удаления выхлопных газов" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="px-2.5 py-1 bg-brand-50 text-brand-700 text-xs font-medium rounded">Промышленная</span>
+                            <span class="text-xs text-slate-400 font-mono">2024</span>
+                        </div>
+                        <h3 class="h-subsection text-slate-900 mb-3">Система удаления выхлопных газов</h3>
+                        <div class="space-y-2 text-sm text-slate-600">
+                            <div class="flex items-start gap-2">
+                                <span class="text-slate-400 font-mono text-xs shrink-0 w-20">Заказчик</span>
+                                <span>ООО «Глобал Трак Сервис Северо-Запад»</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="text-slate-400 font-mono text-xs shrink-0 w-20">Адрес</span>
+                                <span>Ленинградская область, Ломоносовский район, Волхонское ш., д.5-5а</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-slate-100">
+                            <span class="text-xs text-slate-500 uppercase tracking-wider font-medium">Выполняемые работы</span>
+                            <ul class="mt-2 space-y-1 text-sm text-slate-600">
+                                <li class="flex items-center gap-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Разработка РД
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Поставка оборудования
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Монтаж воздуховодов
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Установка оборудования
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Подключение к сети электропитания
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Пусконаладочные работы
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card reveal">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop" alt="Приточно-вытяжная система" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="px-2.5 py-1 bg-brand-50 text-brand-700 text-xs font-medium rounded">Приточно-вытяжная</span>
+                            <span class="text-xs text-slate-400 font-mono">2024</span>
+                        </div>
+                        <h3 class="h-subsection text-slate-900 mb-3">Приточно-вытяжная система рем. зоны 18900 м³/час</h3>
+                        <div class="space-y-2 text-sm text-slate-600">
+                            <div class="flex items-start gap-2">
+                                <span class="text-slate-400 font-mono text-xs shrink-0 w-20">Заказчик</span>
+                                <span>ООО «Глобал Трак Сервис Северо-Запад»</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="text-slate-400 font-mono text-xs shrink-0 w-20">Адрес</span>
+                                <span>Ленинградская область, Ломоносовский район, Волхонское ш., д.5-5а</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-slate-100">
+                            <span class="text-xs text-slate-500 uppercase tracking-wider font-medium">Выполняемые работы</span>
+                            <ul class="mt-2 space-y-1 text-sm text-slate-600">
+                                <li class="flex items-center gap-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Разработка РД
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Поставка оборудования
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Монтаж воздуховодов
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Монтаж трубопроводов от ИТП
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Подъём и сборка установки отм. +7.300
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Монтаж КИПиА
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Подключение к сети электропитания
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Пусконаладочные работы
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Contact Section -->
+    <section class="py-24 md:py-32 bg-slate-950 relative overflow-hidden" id="contact">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-900/20 to-transparent"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span class="tag mb-4 inline-block bg-brand-900/50 text-brand-300 border border-brand-800">Консультация</span>
+                    <h2 class="h-section text-white mb-6 reveal">Готовы обсудить<br>ваш проект?</h2>
+                    <p class="text-slate-400 text-lg mb-8 reveal">
+                        Оставьте заявку на бесплатную консультацию, и мы свяжемся с вами в течение часа. Выезд инженера на объект — бесплатно.
+                    </p>
+
+                    <div class="space-y-6 reveal">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center shrink-0">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm text-slate-500">Телефон</div>
+                                <a href="tel:+78007755695" class="text-white font-medium hover:text-brand-400 transition-colors">+7 800 775 56 95</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center shrink-0">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm text-slate-500">Email</div>
+                                <a href="mailto:info@meetorra.ru" class="text-white font-medium hover:text-brand-400 transition-colors">info@meetorra.ru</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center shrink-0">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm text-slate-500">Адрес</div>
+                                <span class="text-white font-medium">Санкт-Петербург, ул. Профессора Попова, 5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg p-8 reveal">
+                    <h3 class="h-subsection text-slate-900 mb-6">Оставить заявку</h3>
+                    <form class="space-y-5" onsubmit="event.preventDefault(); alert('Форма отправлена! В реальном проекте здесь будет интеграция с CRM.');">
+                        <div class="grid md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Имя</label>
+                                <input type="text" class="input-field" placeholder="Ваше имя" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Телефон</label>
+                                <input type="tel" class="input-field" placeholder="+7 (___) ___-__-__" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Тип объекта</label>
+                            <select class="input-field">
+                                <option>Жилое помещение</option>
+                                <option>Коммерческий объект</option>
+                                <option>Промышленное здание</option>
+                                <option>Другое</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Сообщение</label>
+                            <textarea class="input-field h-32 resize-none" placeholder="Опишите вашу задачу..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary justify-center text-base">
+                            Отправить заявку
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                            </svg>
+                        </button>
+                        <p class="text-xs text-slate-400 text-center">
+                            Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <svg width="140" height="24" viewBox="0 0 342 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-6">
+                        <g clip-path="url(#clip0_footer)">
+                        <path d="M49.7079 8.95523C44.0428 8.95523 39.4513 13.665 39.4513 19.4776C39.4513 25.2902 44.0428 30 49.7079 30C53.3685 30 56.5813 28.0293 58.3958 25.0673H53.0396C52.5444 25.8874 51.3362 26.4249 49.7515 26.4249C46.2455 26.4249 44.0428 23.8649 43.5674 21.1099H59.8418C59.8418 21.1099 59.8418 21.1099 59.8418 21.1059C59.8418 12.8528 54.7392 8.95523 49.7079 8.95523ZM43.6189 17.5706C44.4152 14.9271 46.7209 12.8728 49.6089 12.8728C52.4969 12.8728 54.8026 14.9231 55.5989 17.5706H43.6189Z" fill="white"/>
+                        <path d="M73.2013 8.95523C67.5362 8.95523 62.9447 13.665 62.9447 19.4776C62.9447 25.2902 67.5362 30 73.2013 30C76.8618 30 80.0747 28.0293 81.8891 25.0673H76.533C76.0378 25.8874 74.8295 26.4249 73.2449 26.4249C69.7389 26.4249 67.5362 23.8649 67.0608 21.1099H83.3351C83.3351 21.1099 83.3351 21.1099 83.3351 21.1059C83.3351 12.8528 78.2286 8.95523 73.2013 8.95523ZM67.1123 17.5706C67.9086 14.9271 70.2142 12.8728 73.1023 12.8728C75.9903 12.8728 78.296 14.9231 79.0922 17.5706H67.1123Z" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M123.673 8.95523H127.194V12.8612C127.999 10.9136 131.521 8.78528 133.868 8.96599V12.7206C128.939 13.0579 127.333 17.4029 127.305 19.1055V30H123.677V8.95523H123.673Z" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M136.528 8.95523H140.049V12.8612C140.854 10.9136 144.375 8.78528 146.723 8.96599V12.7206C141.794 13.0579 140.188 17.4029 140.16 19.1055V30H136.532V8.95523H136.528Z" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M163.969 8.9632L163.965 11.0083C160.787 8.47171 155.554 8.27628 152.24 10.4739C140.311 18.3749 151.551 36.3865 163.973 27.6758C163.981 28.4775 163.993 29.1983 164.001 30H168V8.95523L163.969 8.9632ZM157.385 26.1283C153.719 26.1283 150.746 23.1171 150.746 19.4039C150.746 15.6907 153.719 12.6795 157.385 12.6795C161.052 12.6795 164.025 15.6907 164.025 19.4039C164.025 23.1171 161.052 26.1283 157.385 26.1283Z" fill="white"/>
+                        <path d="M110.375 8.95523C104.745 8.95523 100.179 13.6633 100.179 19.4756C100.179 25.2879 104.745 30 110.375 30C116.005 30 120.57 25.2879 120.57 19.4756C120.566 13.6673 116.005 8.95523 110.375 8.95523ZM110.418 25.87C106.909 25.87 104.051 22.9837 104.051 19.4318C104.051 15.8838 106.905 12.9936 110.418 12.9936C113.927 12.9936 116.785 15.8798 116.785 19.4318C116.785 22.9837 113.927 25.87 110.418 25.87Z" fill="white"/>
+                        <path d="M90.8302 21.2188V12.5373H97.6334V9.04412H90.8302V0H86.8813V21.3469C86.8813 26.7156 90.2099 30 95.5981 30H98.8496C98.8496 30 98.8496 27.2356 98.8496 26.3955C95.2656 26.3955 90.8302 26.9596 90.8302 21.2188Z" fill="white"/>
+                        <path d="M25.5119 9.00792C22.5273 9.21471 19.6283 10.6258 17.9525 13.3628C17.7038 12.9817 17.4469 12.6289 17.186 12.3045C14.9679 9.56749 12.2075 8.76867 9.76929 8.99169C6.87438 9.25526 4.4239 10.9543 3.84085 12.5559L3.83269 8.9552H0V30H3.83269L3.83677 18.399C3.83677 17.584 4.4606 13.3101 9.16584 12.8722C9.42271 12.8479 9.68774 12.8317 9.96908 12.8317C12.8232 12.8317 14.3563 14.3685 15.1636 15.8242C15.7548 16.8906 16.0361 18.0989 16.0361 19.3154V30H19.8688V18.0706C19.877 16.9676 20.297 15.889 21.035 15.0618C22.0584 13.9103 23.5955 13.0831 25.2264 12.8722C25.361 12.856 25.4956 12.8398 25.6301 12.8317C28.0439 12.6695 30.8491 14.1698 31.795 16.9028C31.9622 17.3853 32.0601 17.8921 32.0682 18.399V30H35.905V17.8921C35.9091 11.8017 30.5841 8.6592 25.5119 9.00792Z" fill="white"/>
+                        <path d="M9.06543 12.8823C11.3691 13.1588 12.6694 14.5239 13.3906 15.8242C13.9818 16.8907 14.2631 18.099 14.2631 19.3155V30.0001H16.0361V19.3155C16.0361 18.099 15.7548 16.8907 15.1636 15.8242C14.3563 14.3685 12.8232 12.8317 9.96905 12.8317C9.68772 12.8317 9.42269 12.848 9.16582 12.8723C9.13215 12.8754 9.09868 12.8788 9.06543 12.8823Z" fill="#64748b"/>
+                        <path d="M25.1019 12.8896C25.1433 12.8834 25.1849 12.8777 25.2264 12.8723C25.361 12.8561 25.4956 12.8399 25.6301 12.8317C28.0439 12.6695 30.8491 14.1699 31.795 16.9028C31.9622 17.3854 32.06 17.8922 32.0682 18.3991V30.0001L30.2951 30V18.3991C30.2869 17.8922 30.1891 17.3853 30.0219 16.9028C29.2356 14.6311 27.1648 13.2111 25.1019 12.8896Z" fill="#64748b"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_footer">
+                        <rect width="342" height="30" fill="white"/>
+                        </clipPath>
+                        </defs>
+                    </svg>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+                        Группа компаний «Миторра» предоставляет полный спектр услуг для реализации инженерных и строительных проектов.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Направления</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="text-slate-400 hover:text-brand-400 transition-colors">Архитектура и проектирование</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-brand-400 transition-colors">Строительство</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-brand-400 transition-colors">IT-решения</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-brand-400 transition-colors">Ландшафтный дизайн</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-brand-400 transition-colors">Дизайн интерьеров</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Контакты</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="tel:+78007755695" class="text-slate-400 hover:text-white transition-colors">+7 800 775 56 95</a></li>
+                        <li><a href="mailto:info@meetorra.ru" class="text-slate-400 hover:text-white transition-colors">info@meetorra.ru</a></li>
+                        <li><span class="text-slate-500">Санкт-Петербург, ул. Профессора Попова, 5</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-600 text-sm">© 2024 ГК «Миторра». Все права защищены.</p>
+                <div class="flex gap-6 text-sm">
+                    <a href="#" class="text-slate-500 hover:text-slate-300 transition-colors">Политика конфиденциальности</a>
+                    <a href="#" class="text-slate-500 hover:text-slate-300 transition-colors">Карта сайта</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Register GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+        closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        });
+
+        // Hero animations
+        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        heroTl
+            .to('#heroTag', { opacity: 1, y: 0, duration: 0.8 }, 0.2)
+            .to('#heroTitle', { opacity: 1, y: 0, duration: 1 }, 0.4)
+            .to('#heroText', { opacity: 1, y: 0, duration: 0.8 }, 0.6)
+            .to('#heroCta', { opacity: 1, y: 0, duration: 0.8 }, 0.8)
+            .to('#heroScroll', { opacity: 1, y: 0, duration: 0.6 }, 1)
+            .to('#heroStats', { opacity: 1, y: 0, duration: 0.6 }, 1);
+
+        // Scroll reveal animations
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach((el, i) => {
+            // Skip hero elements (already animated)
+            if (el.id && el.id.startsWith('hero')) return;
+
+            gsap.to(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                delay: i % 3 * 0.1,
+                ease: 'power3.out'
+            });
+        });
+
+        // Counter animation for infographic
+        const counters = document.querySelectorAll('[data-count]');
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-count'));
+            gsap.to(counter, {
+                scrollTrigger: {
+                    trigger: counter,
+                    start: 'top 80%',
+                },
+                innerHTML: target,
+                duration: 2,
+                snap: { innerHTML: 1 },
+                ease: 'power2.out'
+            });
+        });
+
+        // Info bar fills
+        const barFills = document.querySelectorAll('.info-bar-fill');
+        barFills.forEach(bar => {
+            const width = bar.getAttribute('data-width');
+            gsap.to(bar, {
+                scrollTrigger: {
+                    trigger: bar,
+                    start: 'top 85%',
+                },
+                width: width,
+                duration: 1.5,
+                ease: 'power3.out'
+            });
+        });
+
+        // Parallax for hero video
+        gsap.to('.hero-video-container video, .hero-fallback', {
+            scrollTrigger: {
+                trigger: '.hero-video-container',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true,
+            },
+            y: 150,
+            ease: 'none'
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Video fallback check
+        const video = document.querySelector('.hero-video-container video');
+        if (video) {
+            video.addEventListener('error', () => {
+                video.style.display = 'none';
+                document.querySelector('.hero-fallback').classList.remove('hidden');
+            });
+            // If video can't play after 3s, show fallback
+            setTimeout(() => {
+                if (video.readyState < 2) {
+                    video.style.display = 'none';
+                    document.querySelector('.hero-fallback').classList.remove('hidden');
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
