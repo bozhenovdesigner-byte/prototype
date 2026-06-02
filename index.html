@@ -3,12 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ГК «Миторра» — монтаж инженерных систем [Wireframe v5]</title>
+<title>ГК «Миторра» — монтаж инженерных систем</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
   :root {
-    --accent: #c41e3a;
-    --accent-dark: #a01830;
     --dark: #1a1a1a;
     --gray: #6b7280;
     --light: #f5f5f5;
@@ -25,47 +23,32 @@
   }
   a { text-decoration: none; color: inherit; }
 
-  .wf-label {
-    position: fixed;
-    top: 12px; left: 12px;
-    z-index: 9999;
-    background: var(--dark);
-    color: #fff;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  /* Header */
+  /* === HEADER === */
   header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,0.98);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
   .header-inner {
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 16px 32px;
+    padding: 14px 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
   .logo {
     font-weight: 800;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: var(--dark);
     letter-spacing: -0.5px;
   }
-  .logo span { color: var(--accent); }
-  nav { display: flex; gap: 36px; }
+  nav { display: flex; gap: 32px; }
   nav a {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: var(--gray);
     transition: color 0.2s;
@@ -75,24 +58,31 @@
   nav a.active::after {
     content: "";
     position: absolute;
-    bottom: -18px;
+    bottom: -16px;
     left: 0; right: 0;
     height: 2px;
-    background: var(--accent);
+    background: var(--dark);
     border-radius: 2px;
   }
-  .header-phone {
+  .header-btn {
+    background: var(--dark);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
     font-weight: 600;
-    font-size: 0.9rem;
-    color: var(--dark);
+    font-size: 0.8rem;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
   }
+  .header-btn:hover { opacity: 0.85; }
 
-  /* Hero */
+  /* === HERO === */
   .hero {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    height: 85vh;
+    min-height: 520px;
+    background: #888;
     display: flex;
     align-items: flex-end;
     overflow: hidden;
@@ -100,97 +90,79 @@
   .hero-bg {
     position: absolute;
     inset: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23222" width="1200" height="800"/><text x="50%25" y="50%25" fill="%23444" font-size="24" font-family="Inter" text-anchor="middle">[Фото объекта — крупный план труб/щита/команды]</text></svg>');
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700"><rect fill="%23888" width="1200" height="700"/><text x="50%25" y="50%25" fill="%23aaa" font-size="20" font-family="Inter" text-anchor="middle">Видео/фото hero</text></svg>');
     background-size: cover;
     background-position: center;
-    opacity: 0.4;
   }
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%);
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.05) 100%);
   }
   .hero-inner {
     position: relative;
     z-index: 2;
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 32px;
+    padding: 50px 32px;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 60px;
-    align-items: end;
   }
   .hero-text h1 {
-    font-size: 3rem;
+    font-size: 2.6rem;
     font-weight: 800;
     color: #fff;
-    line-height: 1.1;
-    letter-spacing: -1.5px;
-    margin-bottom: 20px;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+    max-width: 600px;
   }
   .hero-text p {
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.7);
-    max-width: 520px;
-    margin-bottom: 32px;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 480px;
+    margin-bottom: 28px;
+    line-height: 1.6;
   }
   .hero-nums {
     display: flex;
-    gap: 40px;
-  }
-  .hero-num {
-    color: #fff;
+    gap: 36px;
   }
   .hero-num strong {
     display: block;
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     font-weight: 800;
-    color: var(--accent);
+    color: #fff;
     line-height: 1;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
   .hero-num span {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     color: rgba(255,255,255,0.6);
   }
-  .hero-scroll {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(255,255,255,0.4);
-    font-size: 0.8rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
 
-  /* Section base */
-  section { padding: 100px 32px; }
-  .section-inner { max-width: 1280px; margin: 0 auto; }
+  /* === SECTIONS BASE === */
+  section { padding: 80px 32px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
   .section-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 56px;
+    margin-bottom: 40px;
   }
   .section-title h2 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    letter-spacing: -0.5px;
-    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
   }
   .section-title p {
     color: var(--gray);
-    font-size: 1.05rem;
+    font-size: 0.95rem;
   }
   .section-link {
-    color: var(--accent);
+    color: var(--dark);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -199,239 +171,213 @@
   }
   .section-link:hover { gap: 10px; }
 
-  /* === НАПРАВЛЕНИЯ — Masonry с hover-оверлеем === */
-  .masonry-grid {
-    column-count: 3;
-    column-gap: 20px;
-  }
-  .masonry-item {
-    break-inside: avoid;
-    margin-bottom: 20px;
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .masonry-item:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
-  }
-  .masonry-item .masonry-img {
-    width: 100%;
-    display: block;
-    background: #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #888;
-    font-size: 0.8rem;
-    font-weight: 500;
-    object-fit: cover;
-    transition: filter 0.3s ease;
-  }
-  .masonry-item .masonry-img.tall { height: 340px; }
-  .masonry-item .masonry-img.medium { height: 260px; }
-  .masonry-item .masonry-img.short { height: 200px; }
-
-  /* Оверлей при наведении */
-  .masonry-item .masonry-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(26,26,26,0.85);
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 28px;
-    z-index: 2;
-  }
-  .masonry-item:hover .masonry-overlay {
-    opacity: 1;
-  }
-  .masonry-item:hover .masonry-img {
-    filter: brightness(0.4);
-  }
-
-  /* Заголовок — всегда виден внизу */
-  .masonry-item .masonry-title {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 28px;
-    z-index: 3;
-    transition: transform 0.35s ease, opacity 0.3s ease;
-  }
-  .masonry-item .masonry-title h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  }
-  .masonry-item .masonry-title .masonry-tag {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  /* При наведении заголовок уезжает вверх */
-  .masonry-item:hover .masonry-title {
-    transform: translateY(-120px);
-    opacity: 0;
-  }
-
-  /* Контент оверлея */
-  .masonry-item .masonry-overlay h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 12px;
-    transform: translateY(20px);
-    transition: transform 0.35s ease 0.05s;
-  }
-  .masonry-item .masonry-overlay p {
-    font-size: 0.92rem;
-    color: rgba(255,255,255,0.8);
-    line-height: 1.6;
-    margin-bottom: 20px;
-    transform: translateY(20px);
-    transition: transform 0.35s ease 0.1s;
-  }
-  .masonry-item .masonry-overlay .masonry-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--accent);
-    color: #fff;
-    padding: 10px 22px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.88rem;
-    transform: translateY(20px);
-    transition: transform 0.35s ease 0.15s, background 0.2s;
-  }
-  .masonry-item .masonry-overlay .masonry-cta:hover {
-    background: var(--accent-dark);
-  }
-  .masonry-item:hover .masonry-overlay h3,
-  .masonry-item:hover .masonry-overlay p,
-  .masonry-item:hover .masonry-overlay .masonry-cta {
-    transform: translateY(0);
-  }
-
   /* === О КОМПАНИИ === */
+  .about-section { background: var(--light); }
   .about-preview {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 48px;
     align-items: center;
   }
   .about-visual {
-    background: var(--light);
-    border-radius: 16px;
-    height: 420px;
+    background: #ddd;
+    border-radius: 12px;
+    height: 380px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #888;
-    font-size: 0.9rem;
-    border: 2px dashed var(--border);
+    color: #999;
+    font-size: 0.85rem;
   }
-  .about-content h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 20px; }
+  .about-content h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 16px; }
   .about-content .lead {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     color: var(--gray);
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     line-height: 1.7;
   }
   .stats-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 32px;
+    gap: 12px;
+    margin-bottom: 24px;
   }
   .stat-item {
-    background: var(--light);
-    border-radius: 10px;
-    padding: 24px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 18px;
     text-align: center;
   }
   .stat-item strong {
     display: block;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 800;
-    color: var(--accent);
-    margin-bottom: 4px;
+    color: var(--dark);
+    margin-bottom: 2px;
   }
-  .stat-item span { font-size: 0.82rem; color: var(--gray); }
+  .stat-item span { font-size: 0.75rem; color: var(--gray); }
   .about-list {
     list-style: none;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
   }
   .about-list li {
-    padding: 8px 0;
-    font-size: 0.95rem;
+    padding: 6px 0;
+    font-size: 0.88rem;
     color: var(--dark);
     display: flex;
     align-items: center;
-    gap: 10px;
-    border-bottom: 1px solid var(--border);
+    gap: 8px;
   }
   .about-list li::before {
     content: "✓";
-    color: var(--accent);
+    color: var(--dark);
     font-weight: 700;
+    font-size: 0.8rem;
   }
   .btn-outline {
     background: transparent;
     color: var(--dark);
-    padding: 14px 32px;
-    border-radius: 8px;
+    padding: 12px 24px;
+    border-radius: 6px;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     border: 1px solid var(--border);
     transition: all 0.2s;
     display: inline-block;
     cursor: pointer;
   }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-primary {
-    background: var(--accent);
-    color: #fff;
-    padding: 14px 32px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.2s;
-    display: inline-block;
-    border: none;
-    cursor: pointer;
+  .btn-outline:hover { border-color: var(--dark); }
+
+  /* === УСЛУГИ — CSS Grid Masonry (как на скриншоте) === */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 16px;
+    height: 700px;
   }
-  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+  .service-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #ccc;
+  }
+  .service-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+  }
+  .service-card .svc-img {
+    position: absolute;
+    inset: 0;
+    background: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 0.75rem;
+    transition: filter 0.35s ease;
+  }
+  .service-card:hover .svc-img {
+    filter: brightness(0.35) grayscale(1);
+  }
+  /* Заголовок внизу — всегда виден */
+  .service-card .svc-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    z-index: 3;
+    transition: transform 0.35s ease, opacity 0.3s ease;
+  }
+  .service-card .svc-title h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  }
+  .service-card:hover .svc-title {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+  /* Оверлей при наведении */
+  .service-card .svc-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26,26,26,0.88);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    z-index: 2;
+  }
+  .service-card:hover .svc-overlay {
+    opacity: 1;
+  }
+  .service-card .svc-overlay h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+    transform: translateY(16px);
+    transition: transform 0.35s ease 0.05s;
+  }
+  .service-card .svc-overlay p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.55;
+    margin-bottom: 16px;
+    transform: translateY(16px);
+    transition: transform 0.35s ease 0.1s;
+  }
+  .service-card .svc-overlay .svc-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    color: var(--dark);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transform: translateY(16px);
+    transition: transform 0.35s ease 0.15s, background 0.2s;
+  }
+  .service-card .svc-overlay .svc-cta:hover {
+    background: var(--light);
+  }
+  .service-card:hover .svc-overlay h3,
+  .service-card:hover .svc-overlay p,
+  .service-card:hover .svc-overlay .svc-cta {
+    transform: translateY(0);
+  }
+  /* Grid positioning — точно как на скриншоте */
+  .svc-1 { grid-column: 1; grid-row: 1 / 3; }   /* Электроснабжение — 2 ряда */
+  .svc-2 { grid-column: 2; grid-row: 1; }        /* Кондиционирование */
+  .svc-3 { grid-column: 3; grid-row: 1; }        /* Отопление */
+  .svc-4 { grid-column: 1; grid-row: 3; }        /* Вентиляция */
+  .svc-5 { grid-column: 2; grid-row: 2 / 4; }    /* Водоснабжение — 2 ряда */
+  .svc-6 { grid-column: 3; grid-row: 2 / 4; }    /* Слаботочка — 2 ряда */
 
   /* === ОБЪЕКТЫ — карусель === */
+  .objects-section { background: var(--light); }
   .objects-carousel-wrap {
     position: relative;
     overflow: hidden;
   }
   .objects-carousel {
     display: flex;
-    gap: 24px;
+    gap: 20px;
     transition: transform 0.6s ease;
   }
   .object-slide {
-    min-width: calc(33.333% - 16px);
+    min-width: calc(33.333% - 14px);
     background: #fff;
-    border-radius: 16px;
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--border);
     cursor: pointer;
@@ -439,52 +385,52 @@
   }
   .object-slide:hover {
     box-shadow: var(--shadow-hover);
-    transform: translateY(-4px);
+    transform: translateY(-3px);
   }
   .object-slide .obj-img {
-    height: 240px;
+    height: 200px;
     background: #ddd;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #888;
-    font-size: 0.85rem;
+    color: #999;
+    font-size: 0.8rem;
     border-bottom: 1px solid var(--border);
   }
-  .object-slide .obj-info { padding: 24px; }
-  .object-slide .obj-info h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+  .object-slide .obj-info { padding: 20px; }
+  .object-slide .obj-info h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
   .object-slide .obj-meta {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--gray);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
   .object-slide .obj-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 5px;
   }
   .obj-tag {
     background: var(--light);
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 4px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--gray);
   }
   .carousel-nav {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    margin-top: 32px;
+    gap: 8px;
+    margin-top: 24px;
   }
   .carousel-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: var(--border);
+    background: #ccc;
     cursor: pointer;
     transition: background 0.2s;
   }
-  .carousel-dot.active { background: var(--accent); }
+  .carousel-dot.active { background: var(--dark); }
   .carousel-arrows {
     position: absolute;
     top: 50%;
@@ -492,12 +438,12 @@
     right: 0;
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 12px;
     pointer-events: none;
   }
   .carousel-arrow {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     background: #fff;
     border: 1px solid var(--border);
     border-radius: 50%;
@@ -506,84 +452,83 @@
     justify-content: center;
     cursor: pointer;
     pointer-events: all;
-    font-size: 1.2rem;
+    font-size: 1rem;
     transition: all 0.2s;
     box-shadow: var(--shadow);
   }
   .carousel-arrow:hover {
-    background: var(--accent);
+    background: var(--dark);
     color: #fff;
-    border-color: var(--accent);
+    border-color: var(--dark);
   }
 
   /* === ОТЗЫВЫ === */
-  .reviews-section { background: var(--light); }
+  .reviews-section { background: #fff; }
   .reviews-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 20px;
   }
   .review-card {
     background: #fff;
-    border-radius: 16px;
-    padding: 32px;
+    border-radius: 12px;
+    padding: 28px;
     border: 1px solid var(--border);
     transition: all 0.25s;
   }
   .review-card:hover {
     box-shadow: var(--shadow-hover);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
   }
   .review-card .review-text {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--dark);
-    line-height: 1.7;
-    margin-bottom: 24px;
+    line-height: 1.65;
+    margin-bottom: 20px;
     font-style: italic;
   }
   .review-card .review-author {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
   }
   .review-author .avatar {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     background: var(--light);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--gray);
-    font-size: 1.2rem;
+    font-size: 1rem;
     flex-shrink: 0;
   }
   .review-author div strong {
     display: block;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.88rem;
   }
   .review-author div span {
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     color: var(--gray);
   }
   .review-card .review-object {
-    margin-top: 12px;
-    font-size: 0.82rem;
-    color: var(--accent);
+    margin-top: 10px;
+    font-size: 0.78rem;
+    color: var(--gray);
     font-weight: 500;
   }
 
   /* === ПАРТНЕРЫ === */
   .partners-section {
-    padding: 48px 32px;
+    padding: 40px 32px;
     background: #fff;
     border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
   }
   .partners-section .section-title h2 {
-    font-size: 1.4rem;
-    margin-bottom: 32px;
+    font-size: 1.2rem;
+    margin-bottom: 24px;
   }
   .partners-carousel-wrap {
     position: relative;
@@ -591,20 +536,20 @@
   }
   .partners-carousel {
     display: flex;
-    gap: 48px;
+    gap: 40px;
     align-items: center;
-    animation: scrollPartners 20s linear infinite;
+    animation: scrollPartners 18s linear infinite;
   }
   .partner-logo {
-    min-width: 160px;
-    height: 60px;
+    min-width: 140px;
+    height: 50px;
     background: var(--light);
-    border-radius: 8px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #aaa;
-    font-size: 0.8rem;
+    color: #bbb;
+    font-size: 0.75rem;
     font-weight: 500;
     border: 1px solid var(--border);
     flex-shrink: 0;
@@ -622,104 +567,131 @@
   .contacts-preview {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
-    gap: 40px;
+    gap: 32px;
     align-items: start;
   }
-  .contacts-info h2 { font-size: 2rem; font-weight: 700; margin-bottom: 24px; }
+  .contacts-info h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; }
   .contact-line {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
   }
   .contact-line .icon {
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
     background: #fff;
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
-  .contact-line div strong { display: block; margin-bottom: 2px; font-weight: 600; }
-  .contact-line div span { color: var(--gray); font-size: 0.88rem; }
+  .contact-line div strong { display: block; margin-bottom: 1px; font-weight: 600; font-size: 0.9rem; }
+  .contact-line div span { color: var(--gray); font-size: 0.8rem; }
   .contacts-map {
     background: #ddd;
-    border-radius: 16px;
-    height: 380px;
+    border-radius: 12px;
+    height: 320px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #888;
-    font-size: 0.9rem;
-    border: 2px dashed var(--border);
+    color: #999;
+    font-size: 0.85rem;
   }
+  .btn-dark {
+    background: var(--dark);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    display: inline-block;
+    margin-top: 8px;
+  }
+  .btn-dark:hover { opacity: 0.85; }
 
-  /* Footer */
+  /* === FOOTER === */
   footer {
     background: var(--dark);
     color: rgba(255,255,255,0.5);
-    padding: 48px 32px;
-    font-size: 0.85rem;
+    padding: 40px 32px;
+    font-size: 0.8rem;
   }
   .footer-inner {
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 32px;
   }
   .footer-col h4 {
     color: #fff;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
   .footer-col a, .footer-col p {
     display: block;
     color: rgba(255,255,255,0.5);
-    font-size: 0.85rem;
-    margin-bottom: 10px;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
     transition: color 0.2s;
   }
   .footer-col a:hover { color: #fff; }
-  .footer-bottom {
-    max-width: 1280px;
-    margin: 40px auto 0;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    text-align: center;
+  .footer-desc {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.78rem;
+    line-height: 1.6;
+    margin-top: 12px;
   }
 
   /* Responsive */
   @media (max-width: 1024px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .masonry-grid { column-count: 2; }
     .about-preview { grid-template-columns: 1fr; }
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 220px);
+      height: auto;
+    }
+    .svc-1 { grid-column: 1; grid-row: 1; }
+    .svc-2 { grid-column: 2; grid-row: 1; }
+    .svc-3 { grid-column: 1; grid-row: 2; }
+    .svc-4 { grid-column: 2; grid-row: 2; }
+    .svc-5 { grid-column: 1; grid-row: 3; }
+    .svc-6 { grid-column: 2; grid-row: 3; }
     .reviews-grid { grid-template-columns: 1fr; }
     .contacts-preview { grid-template-columns: 1fr; }
     .footer-inner { grid-template-columns: 1fr 1fr; }
-    .object-slide { min-width: calc(50% - 12px); }
-    .hero-text h1 { font-size: 2.2rem; }
+    .object-slide { min-width: calc(50% - 10px); }
   }
   @media (max-width: 640px) {
-    .masonry-grid { column-count: 1; }
+    .services-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(6, 200px);
+    }
+    .svc-1, .svc-2, .svc-3, .svc-4, .svc-5, .svc-6 {
+      grid-column: 1;
+      grid-row: auto;
+    }
     .object-slide { min-width: 100%; }
     .stats-row { grid-template-columns: 1fr; }
     .footer-inner { grid-template-columns: 1fr; }
-    .hero { height: auto; min-height: 500px; }
+    .hero { height: auto; min-height: 450px; }
     .hero-text h1 { font-size: 1.8rem; }
-    .hero-nums { flex-wrap: wrap; gap: 24px; }
+    .hero-nums { flex-wrap: wrap; gap: 20px; }
     nav { display: none; }
-    section { padding: 60px 20px; }
-    .header-inner { padding: 16px 20px; }
-    .partners-section { padding: 32px 20px; }
+    section { padding: 50px 20px; }
+    .header-inner { padding: 14px 20px; }
+    .partners-section { padding: 28px 20px; }
   }
 
   .clickable { cursor: pointer; }
@@ -727,12 +699,10 @@
 </head>
 <body>
 
-<div class="wf-label">Wireframe v5.0 — Masonry Hover</div>
-
 <!-- Header -->
 <header>
   <div class="header-inner">
-    <div class="logo">МИТОРРА<span>.</span></div>
+    <div class="logo">Логотип</div>
     <nav>
       <a href="#" class="active">Главная</a>
       <a href="#services">Услуги</a>
@@ -740,7 +710,7 @@
       <a href="#about">О компании</a>
       <a href="#contacts">Контакты</a>
     </nav>
-    <div class="header-phone">+7 (999) 000-00-00</div>
+    <button class="header-btn">Заказать звонок</button>
   </div>
 </header>
 
@@ -750,7 +720,7 @@
   <div class="hero-overlay"></div>
   <div class="hero-inner">
     <div class="hero-text">
-      <h1>Комплексный монтаж<br>инженерных систем</h1>
+      <h1>Комплексный монтаж инженерных систем</h1>
       <p>Электроснабжение, водоснабжение, отопление, вентиляция, кондиционирование и слаботочные системы. Работаем с девелоперами и генподрядчиками по всей России.</p>
       <div class="hero-nums">
         <div class="hero-num"><strong>350+</strong><span>объектов сдано</span></div>
@@ -759,110 +729,14 @@
         <div class="hero-num"><strong>BIM</strong><span>при монтаже</span></div>
       </div>
     </div>
-    <div></div>
-  </div>
-  <div class="hero-scroll"><span>↓</span><span>листайте вниз</span></div>
-</section>
-
-<!-- НАПРАВЛЕНИЯ — Masonry с hover-оверлеем -->
-<section id="services" style="background: #fff; padding-top: 80px;">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-title">
-        <h2>Направления работ</h2>
-        <p>От проектирования до пусконаладки — под ключ</p>
-      </div>
-      <a href="#" class="section-link clickable">Все услуги →</a>
-    </div>
-    <div class="masonry-grid">
-
-      <div class="masonry-item clickable">
-        <div class="masonry-img tall">[Фото: щит/кабель]</div>
-        <div class="masonry-title">
-          <span class="masonry-tag">ЭС</span>
-          <h3>Электроснабжение</h3>
-        </div>
-        <div class="masonry-overlay">
-          <h3>Электроснабжение</h3>
-          <p>Проектирование, монтаж и пусконаладка систем электроснабжения любой сложности. От щитовых до розеток.</p>
-          <span class="masonry-cta">Узнать больше →</span>
-        </div>
-      </div>
-
-      <div class="masonry-item clickable">
-        <div class="masonry-img medium">[Фото: воздуховоды]</div>
-        <div class="masonry-title">
-          <span class="masonry-tag">Вентиляция</span>
-          <h3>Вентиляция</h3>
-        </div>
-        <div class="masonry-overlay">
-          <h3>Вентиляция</h3>
-          <p>Приточно-вытяжные системы, дымоудаление, климат-контроль. Монтаж и автоматика.</p>
-          <span class="masonry-cta">Узнать больше →</span>
-        </div>
-      </div>
-
-      <div class="masonry-item clickable">
-        <div class="masonry-img short">[Фото: кондиционер/трасса]</div>
-        <div class="masonry-title">
-          <span class="masonry-tag">Кондиционирование</span>
-          <h3>Кондиционирование</h3>
-        </div>
-        <div class="masonry-overlay">
-          <h3>Кондиционирование</h3>
-          <p>Сплит-системы, VRF, чиллеры-фанкойлы. Монтаж трасс и запуск оборудования.</p>
-          <span class="masonry-cta">Узнать больше →</span>
-        </div>
-      </div>
-
-      <div class="masonry-item clickable">
-        <div class="masonry-img tall">[Фото: трубы/коллектор]</div>
-        <div class="masonry-title">
-          <span class="masonry-tag">ВК</span>
-          <h3>Водоснабжение и канализация</h3>
-        </div>
-        <div class="masonry-overlay">
-          <h3>Водоснабжение и канализация</h3>
-          <p>Холодное и горячее водоснабжение, канализация, дренаж. Полный цикл от разводки до опресовки.</p>
-          <span class="masonry-cta">Узнать больше →</span>
-        </div>
-      </div>
-
-      <div class="masonry-item clickable">
-        <div class="masonry-img medium">[Фото: котельная/радиатор]</div>
-        <div class="masonry-title">
-          <span class="masonry-tag">Отопление</span>
-          <h3>Отопление</h3>
-        </div>
-        <div class="masonry-overlay">
-          <h3>Отопление</h3>
-          <p>Котельные, тепловые пункты, радиаторное и тёплый пол. Проектирование, монтаж, ПНР.</p>
-          <span class="masonry-cta">Узнать больше →</span>
-        </div>
-      </div>
-
-      <div class="masonry-item clickable">
-        <div class="masonry-img short">[Фото: щит СКС]</div>
-        <div class="masonry-title">
-          <span class="masonry-tag">Слаботочка</span>
-          <h3>Слаботочные системы</h3>
-        </div>
-        <div class="masonry-overlay">
-          <h3>Слаботочные системы</h3>
-          <p>СКС, СВН, системы безопасности, умный дом. Структурированные кабельные сети под ключ.</p>
-          <span class="masonry-cta">Узнать больше →</span>
-        </div>
-      </div>
-
-    </div>
   </div>
 </section>
 
-<!-- О КОМПАНИИ — 3-й экран -->
-<section id="about" style="background: #fff;">
+<!-- О КОМПАНИИ — 2-й экран -->
+<section id="about" class="about-section">
   <div class="section-inner">
     <div class="about-preview">
-      <div class="about-visual">[Фото: команда / BIM-модель / производственная площадка]</div>
+      <div class="about-visual">Фото</div>
       <div class="about-content">
         <h2>ГК «Миторра»</h2>
         <p class="lead">Строим инженерные системы с 2012 года. Своя бригада 80+ человек, СРО, ISO 9001. Работаем по BIM-технологиям: 3D-модель до начала монтажа, точный подбор материалов, clash detection.</p>
@@ -883,8 +757,95 @@
   </div>
 </section>
 
+<!-- УСЛУГИ — CSS Grid как на скриншоте -->
+<section id="services" style="background: #fff;">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-title">
+        <h2>Услуги</h2>
+        <p>От проектирования до пусконаладки — под ключ</p>
+      </div>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card svc-1 clickable">
+        <div class="svc-img">[Фото: щит/кабель]</div>
+        <div class="svc-title">
+          <h3>Электроснабжение</h3>
+        </div>
+        <div class="svc-overlay">
+          <h3>Электроснабжение</h3>
+          <p>Проектирование, монтаж и пусконаладка систем электроснабжения любой сложности. От щитовых до розеток.</p>
+          <span class="svc-cta">Узнать больше →</span>
+        </div>
+      </div>
+
+      <div class="service-card svc-2 clickable">
+        <div class="svc-img">[Фото: кондиционер/трасса]</div>
+        <div class="svc-title">
+          <h3>Кондиционирование</h3>
+        </div>
+        <div class="svc-overlay">
+          <h3>Кондиционирование</h3>
+          <p>Сплит-системы, VRF, чиллеры-фанкойлы. Монтаж трасс и запуск оборудования.</p>
+          <span class="svc-cta">Узнать больше →</span>
+        </div>
+      </div>
+
+      <div class="service-card svc-3 clickable">
+        <div class="svc-img">[Фото: котельная/радиатор]</div>
+        <div class="svc-title">
+          <h3>Отопление</h3>
+        </div>
+        <div class="svc-overlay">
+          <h3>Отопление</h3>
+          <p>Котельные, тепловые пункты, радиаторное и тёплый пол. Проектирование, монтаж, ПНР.</p>
+          <span class="svc-cta">Узнать больше →</span>
+        </div>
+      </div>
+
+      <div class="service-card svc-4 clickable">
+        <div class="svc-img">[Фото: воздуховоды]</div>
+        <div class="svc-title">
+          <h3>Вентиляция</h3>
+        </div>
+        <div class="svc-overlay">
+          <h3>Вентиляция</h3>
+          <p>Приточно-вытяжные системы, дымоудаление, климат-контроль. Монтаж и автоматика.</p>
+          <span class="svc-cta">Узнать больше →</span>
+        </div>
+      </div>
+
+      <div class="service-card svc-5 clickable">
+        <div class="svc-img">[Фото: трубы/коллектор]</div>
+        <div class="svc-title">
+          <h3>Водоснабжение и канализация</h3>
+        </div>
+        <div class="svc-overlay">
+          <h3>Водоснабжение и канализация</h3>
+          <p>Холодное и горячее водоснабжение, канализация, дренаж. Полный цикл от разводки до опресовки.</p>
+          <span class="svc-cta">Узнать больше →</span>
+        </div>
+      </div>
+
+      <div class="service-card svc-6 clickable">
+        <div class="svc-img">[Фото: щит СКС]</div>
+        <div class="svc-title">
+          <h3>Слаботочные системы</h3>
+        </div>
+        <div class="svc-overlay">
+          <h3>Слаботочные системы</h3>
+          <p>СКС, СВН, системы безопасности, умный дом. Структурированные кабельные сети под ключ.</p>
+          <span class="svc-cta">Узнать больше →</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ОБЪЕКТЫ — карусель -->
-<section id="objects" style="background: var(--light);">
+<section id="objects" class="objects-section">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-title">
@@ -895,18 +856,6 @@
     </div>
     <div class="objects-carousel-wrap">
       <div class="objects-carousel" id="objectsCarousel">
-        <div class="object-slide clickable">
-          <div class="obj-img">[Фото ЖК]</div>
-          <div class="obj-info">
-            <h4>ЖК «Риверсайд»</h4>
-            <div class="obj-meta">Москва, 2023 · Девелопер: ГК Пример</div>
-            <div class="obj-tags">
-              <span class="obj-tag">ЭС</span>
-              <span class="obj-tag">ВК</span>
-              <span class="obj-tag">Отопление</span>
-            </div>
-          </div>
-        </div>
         <div class="object-slide clickable">
           <div class="obj-img">[Фото БЦ]</div>
           <div class="obj-info">
@@ -936,6 +885,18 @@
             <div class="obj-meta">Новосибирск, 2023 · Заказчик: ООО Логистика</div>
             <div class="obj-tags">
               <span class="obj-tag">Комплексный</span>
+            </div>
+          </div>
+        </div>
+        <div class="object-slide clickable">
+          <div class="obj-img">[Фото ЖК]</div>
+          <div class="obj-info">
+            <h4>ЖК «Риверсайд»</h4>
+            <div class="obj-meta">Москва, 2023 · Девелопер: ГК Пример</div>
+            <div class="obj-tags">
+              <span class="obj-tag">ЭС</span>
+              <span class="obj-tag">ВК</span>
+              <span class="obj-tag">Отопление</span>
             </div>
           </div>
         </div>
@@ -1033,22 +994,22 @@
     </div>
     <div class="partners-carousel-wrap">
       <div class="partners-carousel">
-        <div class="partner-logo">[Логотип ПИК]</div>
-        <div class="partner-logo">[Логотип ГК Самолёт]</div>
-        <div class="partner-logo">[Логотип ГК Пионер]</div>
-        <div class="partner-logo">[Логотип Мортон]</div>
-        <div class="partner-logo">[Логотип Главстрой]</div>
-        <div class="partner-logo">[Логотип Кортрос]</div>
-        <div class="partner-logo">[Логотип ЛСР]</div>
-        <div class="partner-logo">[Логотип А101]</div>
-        <div class="partner-logo">[Логотип ПИК]</div>
-        <div class="partner-logo">[Логотип ГК Самолёт]</div>
-        <div class="partner-logo">[Логотип ГК Пионер]</div>
-        <div class="partner-logo">[Логотип Мортон]</div>
-        <div class="partner-logo">[Логотип Главстрой]</div>
-        <div class="partner-logo">[Логотип Кортрос]</div>
-        <div class="partner-logo">[Логотип ЛСР]</div>
-        <div class="partner-logo">[Логотип А101]</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
+        <div class="partner-logo">Лого</div>
       </div>
     </div>
   </div>
@@ -1093,9 +1054,9 @@
             <span>Карточка контрагента, СРО, ISO</span>
           </div>
         </div>
-        <a href="#" class="btn-primary clickable" style="margin-top: 10px;">Скачать презентацию компании</a>
+        <button class="btn-dark clickable">Заказать звонок</button>
       </div>
-      <div class="contacts-map">[Интерактивная карта проезда]</div>
+      <div class="contacts-map">Карта</div>
     </div>
   </div>
 </section>
@@ -1104,8 +1065,8 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-col">
-      <div class="logo" style="color:#fff; margin-bottom:16px;">МИТОРРА<span style="color:var(--accent);">.</span></div>
-      <p>Комплексный монтаж инженерных систем.<br>Работаем с девелоперами и генподрядчиками.</p>
+      <div class="logo" style="color:#fff; font-size:1.2rem;">МИТОРРА.</div>
+      <p class="footer-desc">Комплексный монтаж инженерных систем.<br>Работаем с девелоперами и генподрядчиками.</p>
     </div>
     <div class="footer-col">
       <h4>Разделы</h4>
@@ -1115,21 +1076,11 @@
       <a href="#">Контакты</a>
     </div>
     <div class="footer-col">
-      <h4>Документы</h4>
-      <a href="#">СРО</a>
-      <a href="#">ISO 9001</a>
-      <a href="#">Реквизиты</a>
-      <a href="#">Политика конфиденциальности</a>
-    </div>
-    <div class="footer-col">
       <h4>Контакты</h4>
       <p>+7 (999) 000-00-00</p>
       <p>info@mitorra.ru</p>
       <p>г. Москва, ул. Примерная, 10</p>
     </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2024 ГК «Миторра». Wireframe-прототип.</p>
   </div>
 </footer>
 
@@ -1142,7 +1093,7 @@
   const maxObjectsIndex = totalObjects - visibleObjects;
 
   function updateObjects() {
-    const slideWidth = objectsCarousel.children[0].offsetWidth + 24;
+    const slideWidth = objectsCarousel.children[0].offsetWidth + 20;
     objectsCarousel.style.transform = `translateX(-${objectsIndex * slideWidth}px)`;
     for (let i = 0; i < objectsDots.length; i++) {
       objectsDots[i].classList.toggle('active', i === objectsIndex);
