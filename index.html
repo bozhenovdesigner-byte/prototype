@@ -72,10 +72,8 @@
     border-radius: 2px;
   }
 
-  /* Dropdown — критично: z-index выше hero */
-  .dropdown-wrap {
-    position: relative;
-  }
+  /* Dropdown */
+  .dropdown-wrap { position: relative; }
   .dropdown-toggle {
     display: flex;
     align-items: center;
@@ -107,7 +105,6 @@
     transition: all 0.2s ease;
     z-index: 9999;
   }
-  /* Показываем и при hover, и при классе .open */
   .dropdown-wrap:hover .dropdown-menu,
   .dropdown-wrap.open .dropdown-menu {
     opacity: 1;
@@ -124,9 +121,7 @@
     transition: background 0.15s;
     white-space: nowrap;
   }
-  .dropdown-menu a:hover {
-    background: var(--light);
-  }
+  .dropdown-menu a:hover { background: var(--light); }
   .dropdown-menu .dropdown-divider {
     height: 1px;
     background: var(--border);
@@ -233,7 +228,7 @@
   }
   .mobile-submenu a:last-child { border-bottom: none; }
 
-  /* === FLOATING PHONE BUTTON (mobile) === */
+  /* FAB */
   .fab-phone {
     display: none;
     position: fixed;
@@ -434,25 +429,41 @@
   }
   .btn-outline:hover { border-color: var(--dark); }
 
-  /* === УСЛУГИ — CSS Grid === */
+  /* === УСЛУГИ — CSS Grid + hover-expand === */
   .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 16px;
     height: 700px;
+    transition: gap 0.45s cubic-bezier(0.4,0,0.2,1);
   }
+  .services-grid.is-hover { gap: 8px; }
   .service-card {
     position: relative;
     border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.5s ease,
+                opacity 0.5s ease,
+                filter 0.5s ease;
     background: #ccc;
+    will-change: transform;
+    transform-origin: center center;
   }
-  .service-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-hover);
+  .services-grid.is-hover .service-card {
+    transform: scale(0.86);
+    opacity: 0.45;
+    filter: grayscale(0.85) blur(0.5px);
+    box-shadow: none;
+  }
+  .services-grid.is-hover .service-card.is-hovered {
+    transform: scale(1.1);
+    opacity: 1;
+    filter: none;
+    z-index: 20;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
   }
   .service-card .svc-img {
     position: absolute;
@@ -465,7 +476,7 @@
     font-size: 0.75rem;
     transition: filter 0.35s ease;
   }
-  .service-card:hover .svc-img {
+  .services-grid.is-hover .service-card.is-hovered .svc-img {
     filter: brightness(0.35) grayscale(1);
   }
   .service-card .svc-title {
@@ -483,7 +494,7 @@
     color: #fff;
     text-shadow: 0 2px 6px rgba(0,0,0,0.5);
   }
-  .service-card:hover .svc-title {
+  .services-grid.is-hover .service-card.is-hovered .svc-title {
     transform: translateY(-60px);
     opacity: 0;
   }
@@ -499,7 +510,7 @@
     padding: 24px;
     z-index: 2;
   }
-  .service-card:hover .svc-overlay {
+  .services-grid.is-hover .service-card.is-hovered .svc-overlay {
     opacity: 1;
   }
   .service-card .svc-overlay h3 {
@@ -534,9 +545,9 @@
   .service-card .svc-overlay .svc-cta:hover {
     background: var(--light);
   }
-  .service-card:hover .svc-overlay h3,
-  .service-card:hover .svc-overlay p,
-  .service-card:hover .svc-overlay .svc-cta {
+  .services-grid.is-hover .service-card.is-hovered .svc-overlay h3,
+  .services-grid.is-hover .service-card.is-hovered .svc-overlay p,
+  .services-grid.is-hover .service-card.is-hovered .svc-overlay .svc-cta {
     transform: translateY(0);
   }
   .svc-1 { grid-column: 1; grid-row: 1 / 3; }
@@ -643,64 +654,6 @@
     background: var(--dark);
     color: #fff;
     border-color: var(--dark);
-  }
-
-  /* === ОТЗЫВЫ === */
-  .reviews-section { background: #fff; }
-  .reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .review-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 28px;
-    border: 1px solid var(--border);
-    transition: all 0.25s;
-  }
-  .review-card:hover {
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-2px);
-  }
-  .review-card .review-text {
-    font-size: 0.9rem;
-    color: var(--dark);
-    line-height: 1.65;
-    margin-bottom: 20px;
-    font-style: italic;
-  }
-  .review-card .review-author {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .review-author .avatar {
-    width: 40px;
-    height: 40px;
-    background: var(--light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gray);
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-  .review-author div strong {
-    display: block;
-    font-weight: 600;
-    font-size: 0.88rem;
-  }
-  .review-author div span {
-    font-size: 0.78rem;
-    color: var(--gray);
-  }
-  .review-card .review-object {
-    margin-top: 10px;
-    font-size: 0.78rem;
-    color: var(--gray);
-    font-weight: 500;
   }
 
   /* === ПАРТНЕРЫ === */
@@ -811,7 +764,7 @@
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     gap: 32px;
   }
   .footer-col h4 {
@@ -855,7 +808,14 @@
     .svc-4 { grid-column: 2; grid-row: 2; }
     .svc-5 { grid-column: 1; grid-row: 3; }
     .svc-6 { grid-column: 2; grid-row: 3; }
-    .reviews-grid { grid-template-columns: 1fr; }
+    .services-grid.is-hover .service-card {
+      transform: scale(0.88);
+      opacity: 0.55;
+      filter: grayscale(0.7);
+    }
+    .services-grid.is-hover .service-card.is-hovered {
+      transform: scale(1.05);
+    }
     .contacts-preview { grid-template-columns: 1fr; }
     .footer-inner { grid-template-columns: 1fr 1fr; }
     .object-slide { min-width: calc(50% - 10px); }
@@ -869,6 +829,13 @@
       grid-column: 1;
       grid-row: auto;
     }
+    .services-grid.is-hover .service-card,
+    .services-grid.is-hover .service-card.is-hovered {
+      transform: none;
+      opacity: 1;
+      filter: none;
+    }
+    .services-grid.is-hover { gap: 16px; }
     .object-slide { min-width: 100%; }
     .stats-row { grid-template-columns: 1fr; }
     .footer-inner { grid-template-columns: 1fr; }
@@ -991,7 +958,7 @@
   </div>
 </section>
 
-<!-- УСЛУГИ — CSS Grid -->
+<!-- УСЛУГИ — CSS Grid + hover-expand -->
 <section id="services" style="background: #fff;">
   <div class="section-inner">
     <div class="section-header">
@@ -1000,7 +967,7 @@
         <p>От проектирования до пусконаладки — под ключ</p>
       </div>
     </div>
-    <div class="services-grid">
+    <div class="services-grid" id="servicesGrid">
 
       <div class="service-card svc-1 clickable">
         <div class="svc-img">[Фото: щит/кабель]</div>
@@ -1173,53 +1140,6 @@
   </div>
 </section>
 
-<!-- ОТЗЫВЫ -->
-<section class="reviews-section">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-title">
-        <h2>Отзывы заказчиков</h2>
-        <p>Что говорят девелоперы и генподрядчики о работе с нами</p>
-      </div>
-    </div>
-    <div class="reviews-grid">
-      <div class="review-card">
-        <p class="review-text">«Миторра сдали весь комплекс инженерных систем в ЖК «Риверсайд» точно в срок. BIM-модель помогла избежать коллизий на этапе проектирования — сэкономили 3 недели на площадке.»</p>
-        <div class="review-author">
-          <div class="avatar">👤</div>
-          <div>
-            <strong>Алексей Смирнов</strong>
-            <span>Технический директор, ГК Пример</span>
-          </div>
-        </div>
-        <div class="review-object">ЖК «Риверсайд», Москва</div>
-      </div>
-      <div class="review-card">
-        <p class="review-text">«Работаем с Миторра по субподряду на вентиляции уже на третьем объекте. Чёткая документация, своя бригада, никаких сюрпризов на пусконаладке.»</p>
-        <div class="review-author">
-          <div class="avatar">👤</div>
-          <div>
-            <strong>Дмитрий Волков</strong>
-            <span>Главный инженер, ООО Строй</span>
-          </div>
-        </div>
-        <div class="review-object">БЦ «Технопарк», СПб</div>
-      </div>
-      <div class="review-card">
-        <p class="review-text">«Комплексный монтаж под ключ — от электрики до слаботочки. Один подрядчик вместо шести. Сократили время координации вдвое.»</p>
-        <div class="review-author">
-          <div class="avatar">👤</div>
-          <div>
-            <strong>Ирина Козлова</strong>
-            <span>Директор по развитию, ООО Логистика</span>
-          </div>
-        </div>
-        <div class="review-object">Логистический центр, Новосибирск</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ПАРТНЕРЫ — низкая автокарусель -->
 <section class="partners-section">
   <div class="section-inner">
@@ -1309,17 +1229,11 @@
       <a href="#">О компании</a>
       <a href="#">Контакты</a>
     </div>
-    <div class="footer-col">
-      <h4>Контакты</h4>
-      <p>+7 (999) 000-00-00</p>
-      <p>info@mitorra.ru</p>
-      <p>г. Москва, ул. Примерная, 10</p>
-    </div>
   </div>
 </footer>
 
 <script>
-  // Desktop dropdown — JS fallback + hover
+  // Desktop dropdown
   const dropdown = document.getElementById('desktopDropdown');
   let dropdownOpen = false;
 
@@ -1328,7 +1242,6 @@
     dropdown.classList.toggle('open', dropdownOpen);
   }
 
-  // Закрыть при клике вне
   document.addEventListener('click', function(e) {
     if (!dropdown.contains(e.target)) {
       dropdownOpen = false;
@@ -1351,6 +1264,20 @@
     const submenu = document.getElementById('mobileSubmenu');
     submenu.classList.toggle('open');
   }
+
+  // Services grid hover effect
+  const grid = document.getElementById('servicesGrid');
+  const cards = grid.querySelectorAll('.service-card');
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      grid.classList.add('is-hover');
+      card.classList.add('is-hovered');
+    });
+    card.addEventListener('mouseleave', () => {
+      grid.classList.remove('is-hover');
+      card.classList.remove('is-hovered');
+    });
+  });
 
   // Objects carousel
   let objectsIndex = 0;
